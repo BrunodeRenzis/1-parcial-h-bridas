@@ -1,0 +1,25 @@
+{
+  "name": "1_parcial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-validator": "^6.15.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.8.7",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "API RESTful desarrollada con Node.js, Express y MongoDB para administrar frases de personajes de Rick y Morty. Incluye autenticación con JWT, validaciones, relaciones entre colecciones y filtros avanzados."
+}

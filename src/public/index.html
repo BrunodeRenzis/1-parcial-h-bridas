@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>API Rick & Morty - Frases</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h1 { color: #2c3e50; }
+    code {
+      background: #eee;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+    footer {
+      margin-top: 3rem;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+      font-size: 0.9rem;
+    }
+    a { color: #2980b9; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>API REST - Frases de Rick & Morty</h1>
+
+  <p>Esta API te permite gestionar frases y personajes de la serie Rick & Morty.</p>
+
+  <h2>Endpoints principales</h2>
+  <ul>
+    <li><a href="/api/frases" target="_blank">GET /api/frases</a></li>
+    <li><a href="/api/personajes" target="_blank">GET /api/personajes</a></li>
+  </ul>
+
+  <h2>Parámetros disponibles (GET /api/frases)</h2>
+  <ul>
+    <li><code>nombre</code>: Buscar frases por nombre del personaje</li>
+    <li><code>season</code>: Filtrar por temporada (número)</li>
+    <li><code>limit</code>: Limitar cantidad de resultados</li>
+    <li><code>skip</code>: Saltar cierta cantidad (para paginado)</li>
+    <li><code>sort</code>: Ordenar por campo (ej: <code>frase</code> o <code>-frase</code>)</li>
+  </ul>
+
+  <h2>Ejemplos</h2>
+  <ul>
+    <li><a href="/api/frases?nombre=rick">/api/frases?nombre=rick</a></li>
+    <li><a href="/api/frases?season=1&limit=2">/api/frases?season=1&limit=2</a></li>
+    <li><a href="/api/frases?sort=-frase">/api/frases?sort=-frase</a></li>
+    <li><a href="api/frases?limit=1&skip=10">/api/frases?skip=10</a></li>
+  </ul>
+
+  <p>Buscá frases por nombre del personaje:</p>
+
+  <input type="text" id="searchInput" placeholder="Ej: Rick, Morty, Summer..." />
+  <input type="number" id="limitInput" placeholder="1" />
+  <button onclick="buscarFrases()">Buscar</button>
+
+  <div id="resultados"></div>
+
+  <script>
+    async function buscarFrases() {
+      const nombre = document.getElementById('searchInput').value.trim();
+      const resultadosDiv = document.getElementById('resultados');
+      const limit = document.getElementById('limitInput').value.trim();
+      resultadosDiv.innerHTML = '';
+
+      if (!nombre) {
+        resultadosDiv.innerHTML = '<p>Por favor ingresa un nombre válido.</p>';
+        return;
+      }
+
+      if(limit<=0){
+        resultadosDiv.innerHTML = '<p>Por favor ingresa cantidad válida de límite.</p>';
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/frases?nombre=${encodeURIComponent(nombre)}&limit=${limit}`);
+        const data = await res.json();
+
+        if (data.length === 0) {
+          resultadosDiv.innerHTML = `<p>No se encontraron frases para "${nombre}".</p>`;
+          return;
+        }
+
+        data.forEach(item => {
+          const contenedor = document.createElement('div');
+          contenedor.innerHTML = `
+            <hr/>
+            <p><strong>Frase:</strong> ${item.frase}</p>
+            <p><strong>Temporada:</strong> ${item.season.join(', ')}</p>
+            <img src="${item.imageUrl}" alt="${item.autor.nombre}" width="100" />
+            <p><strong>Autor:</strong> ${item.autor.nombre}</p>
+            <p><strong>Edad:</strong> ${item.autor.edad}</p>
+            <p><strong>Tipo:</strong> ${item.autor.tipo}</p>
+          `;
+          resultadosDiv.appendChild(contenedor);
+        });
+      } catch (error) {
+        resultadosDiv.innerHTML = '<p>Error al buscar frases.</p>';
+      }
+    }
+  </script>
+
+<h2>📋 CURLs de ejemplo (personajes)</h2>
+<pre>
+GET todos:
+curl http://localhost:4000/api/personajes
+
+GET por ID:
+curl http://localhost:4000/api/personajes/ID_PERSONAJE
+
+POST (JWT):
+curl -X POST http://localhost:4000/api/personajes \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -d '{
+    "id": "b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890",
+    "nombre": "Birdperson",
+    "edad": 40,
+    "tipo": "secundario"
+}'
+
+PUT (JWT):
+curl -X PUT http://localhost:4000/api/personajes/b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -d '{
+    "edad": 41
+}'
+
+DELETE (JWT):
+curl -X DELETE http://localhost:4000/api/personajes/b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890 \
+  -H "Authorization: Bearer TU_TOKEN"
+</pre>
+
+
+
+  <footer>
+    <p>
+      <strong>Nombre:</strong> Bruno de Renzis<br>
+      <strong>Materia:</strong> Aplicaciones Híbridas<br>
+      <strong>Docente:</strong> [MARCOS GALBÁN, Camila Belén]<br>
+      <strong>Comisión:</strong> [A-1331]
+    </p>
+  </footer>
+</body>
+</html>
