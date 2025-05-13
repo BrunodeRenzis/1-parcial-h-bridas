@@ -10,6 +10,8 @@ import {
 import { body } from 'express-validator';
 import { validateFields } from '../middlewares/validate.middleware.js';
 import { authenticateJWT } from '../middlewares/auth.middleware.js';
+import { validateWith } from '../middlewares/joi.middleware.js';
+import { personajeSchema } from '../validations/schemas.js';
 
 const router = express.Router();
 
@@ -19,6 +21,7 @@ router.get('/:id', getPersonajeById);
 router.post(
   '/',
   authenticateJWT,
+  validateWith(personajeSchema),
   [
     body('id').isUUID(),
     body('nombre').notEmpty(),

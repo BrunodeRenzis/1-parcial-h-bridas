@@ -18,6 +18,7 @@ export const getAllFrases = async ({ nombre, season, limit = 10, skip = 0, sort 
   }
 
   return await Frase.find(query)
+    .populate('autor')
     .sort(sort)
     .skip(Number(skip))
     .limit(Number(limit));
