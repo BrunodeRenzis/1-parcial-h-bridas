@@ -18,8 +18,24 @@ export const getAllFrases = async ({ nombre, season, limit = 10, skip = 0, sort 
   }
 
   return await Frase.find(query)
-    .populate('autor')
     .sort(sort)
     .skip(Number(skip))
     .limit(Number(limit));
+};
+
+export const getFraseById = async (id) => {
+  return await Frase.findById(id);
+};
+
+export const createFrase = async (data) => {
+  const nueva = new Frase(data);
+  return await nueva.save();
+};
+
+export const updateFrase = async (id, data) => {
+  return await Frase.findByIdAndUpdate(id, data, { new: true });
+};
+
+export const deleteFrase = async (id) => {
+  return await Frase.findByIdAndDelete(id);
 };

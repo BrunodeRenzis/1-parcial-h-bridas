@@ -1,31 +1,45 @@
 import express from 'express';
 import {
-  getFrases, getFrase, postFrase, putFrase, deleteFrase
-} from '../controllers/frases.controller.js';
-import { authenticateJWT } from '../middlewares/auth.middleware.js';
-import { validateFields } from '../middlewares/validate.middleware.js';
+  getPersonajes,
+  getPersonajeById,
+  postPersonaje,
+  putPersonaje,
+  deletePersonaje
+} from '../controllers/personajes.controller.js';
+
 import { body } from 'express-validator';
+import { validateFields } from '../middlewares/validate.middleware.js';
+import { authenticateJWT } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
-router.get('/', getFrases);
-router.get('/:id', getFrase);
+router.get('/', getPersonajes);
+router.get('/:id', getPersonajeById);
 
 router.post(
   '/',
   authenticateJWT,
   [
-    body('id').isUUID(),
-    body('imageUrl').isURL(),
-    body('frase').notEmpty(),
-    body('autor').notEmpty(),
-    body('season').isArray(),
+    body('nombre').notEmpty(),
+    body('edad').isNumeric(),
+    body('tipo').isIn(['principal', 'secundario']),
   ],
   validateFields,
-  postFrase
+  postPersonaje
 );
 
-router.put('/:id', authenticateJWT, putFrase);
-router.delete('/:id', authenticateJWT, deleteFrase);
+router.put(
+  '/:id',
+  authenticateJWT,
+  [
+    body('nombre').optional().notEmpty(),
+    body('edad').optional().isNumeric(),
+    body('tipo').optional().isIn(['principal', 'secundario']),
+  ],
+  validateFields,
+  putPersonaje
+);
+
+router.delete('/:id', authenticateJWT, deletePersonaje);
 
 export default router;

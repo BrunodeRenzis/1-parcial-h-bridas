@@ -1,9 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import {
-    v4 as uuidv4
-} from 'uuid';
-import {
     Personaje
 } from '../src/models/personaje.model.js';
 import {
@@ -13,7 +10,6 @@ import {
 dotenv.config();
 
 const personajesData = [{
-        id: uuidv4(),
         nombre: 'Rick Sanchez',
         edad: 70,
         tipo: 'principal',
@@ -29,7 +25,6 @@ const personajesData = [{
         ],
     },
     {
-        id: uuidv4(),
         nombre: 'Morty Smith',
         edad: 14,
         tipo: 'principal',
@@ -40,7 +35,6 @@ const personajesData = [{
         }, ],
     },
     {
-        id: uuidv4(),
         nombre: 'Jerry Smith',
         edad: 35,
         tipo: 'secundario',
@@ -51,7 +45,6 @@ const personajesData = [{
         }, ],
     },
     {
-        id: uuidv4(),
         nombre: 'Beth Smith',
         edad: 34,
         tipo: 'secundario',
@@ -67,7 +60,6 @@ const personajesData = [{
         ],
     },
     {
-        id: uuidv4(),
         nombre: 'Summer Smith',
         edad: 17,
         tipo: 'secundario',
@@ -78,7 +70,6 @@ const personajesData = [{
         }, ],
     },
     {
-        id: uuidv4(),
         nombre: 'Evil Morty',
         edad: 14,
         tipo: 'secundario',
@@ -89,7 +80,6 @@ const personajesData = [{
         }, ],
     },
     {
-        id: uuidv4(),
         nombre: 'Mr. Poopybutthole',
         edad: 30,
         tipo: 'secundario',
@@ -100,7 +90,6 @@ const personajesData = [{
         }, ],
     },
     {
-        id: uuidv4(),
         nombre: 'Glorp',
         edad: 999,
         tipo: 'secundario',
@@ -111,7 +100,6 @@ const personajesData = [{
         }, ],
     },
     {
-        id: uuidv4(),
         nombre: 'Squanchy',
         edad: 40,
         tipo: 'secundario',
@@ -132,33 +120,31 @@ async function seedDatabase() {
         await Frase.deleteMany({});
 
         for (const personajeData of personajesData) {
-            const {
-                id,
+            const { nombre, edad, tipo, imageUrl, frases } = personajeData;
+
+            const personaje = new Personaje({
                 nombre,
                 edad,
                 tipo,
-                imageUrl,
-                frases
-            } = personajeData;
-
-            const personaje = new Personaje({
-                id,
-                nombre,
-                edad,
-                tipo
+                frases: []
             });
+
             await personaje.save();
 
             for (const fraseData of frases) {
-                const frase = new Frase({
-                    id: uuidv4(),
+                const nuevaFrase = new Frase({
                     imageUrl,
                     frase: fraseData.frase,
                     autor: personaje._id,
-                    season: fraseData.season,
+                    season: fraseData.season
                 });
-                await frase.save();
+
+                await nuevaFrase.save();
+
+                personaje.frases.push(nuevaFrase._id);
             }
+
+            await personaje.save();
         }
 
         console.log('✅ Datos de prueba insertados correctamente');
@@ -168,5 +154,6 @@ async function seedDatabase() {
         process.exit(1);
     }
 }
+
 
 seedDatabase();
