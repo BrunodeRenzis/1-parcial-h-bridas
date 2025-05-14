@@ -70,6 +70,7 @@ POST   /api/frases       (requiere JWT)
 PUT    /api/frases/:id   (requiere JWT)
 DELETE /api/frases/:id   (requiere JWT)
 
+
 Parámetros disponibles en GET /api/frases:
 
 Parámetro	Descripción
@@ -89,7 +90,10 @@ Ejemplos:
 
 Personajes
 GET    /api/personajes
+GET    /api/personajes/:id
 POST   /api/personajes   (requiere JWT)
+PUT   /api/personajes/:id   (requiere JWT)
+DELETE   /api/personajes/:id   (requiere JWT)
 
 curl para probar por consola ejemplo personajes:
 
@@ -104,14 +108,13 @@ curl -X POST http://localhost:4000/api/personajes \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TU_TOKEN" \
   -d '{
-    "id": "b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890",
     "nombre": "Birdperson",
     "edad": 40,
     "tipo": "secundario"
 }'
 
 put con jwt:
-curl -X PUT http://localhost:4000/api/personajes/b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890 \
+curl -X PUT http://localhost:4000/api/personajes/:id \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TU_TOKEN" \
   -d '{
@@ -119,7 +122,7 @@ curl -X PUT http://localhost:4000/api/personajes/b7d0a3ff-e37f-4e2e-95cd-d98f4e7
 }'
 
 delete con jwt:
-curl -X DELETE http://localhost:4000/api/personajes/b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890 \
+curl -X DELETE http://localhost:4000/api/personajes/:id \
   -H "Authorization: Bearer TU_TOKEN"
 
 

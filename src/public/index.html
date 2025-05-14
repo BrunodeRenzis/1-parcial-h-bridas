@@ -120,14 +120,13 @@ curl -X POST http://localhost:4000/api/personajes \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TU_TOKEN" \
   -d '{
-    "id": "b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890",
     "nombre": "Birdperson",
     "edad": 40,
     "tipo": "secundario"
 }'
 
 PUT (JWT):
-curl -X PUT http://localhost:4000/api/personajes/b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890 \
+curl -X PUT http://localhost:4000/api/personajes/:id \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TU_TOKEN" \
   -d '{
@@ -135,10 +134,40 @@ curl -X PUT http://localhost:4000/api/personajes/b7d0a3ff-e37f-4e2e-95cd-d98f4e7
 }'
 
 DELETE (JWT):
-curl -X DELETE http://localhost:4000/api/personajes/b7d0a3ff-e37f-4e2e-95cd-d98f4e7c7890 \
+curl -X DELETE http://localhost:4000/api/personajes/:id \
   -H "Authorization: Bearer TU_TOKEN"
 </pre>
 
+<h2>📋 CURLs de ejemplo (Frases)</h2>
+<pre>
+GET todos:
+curl http://localhost:4000/api/frases
+
+GET por ID:
+curl http://localhost:4000/api/frases/ID_PERSONAJE
+
+POST (JWT):
+curl -X POST http://localhost:4000/api/frases \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -d '{
+    "nombre": "Birdperson",
+    "edad": 40,
+    "tipo": "secundario"
+}'
+
+PUT (JWT):
+curl -X PUT http://localhost:4000/api/frases/:id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -d '{
+    "edad": 41
+}'
+
+DELETE (JWT):
+curl -X DELETE http://localhost:4000/api/frases/:id \
+  -H "Authorization: Bearer TU_TOKEN"
+</pre>
 
 
   <footer>
