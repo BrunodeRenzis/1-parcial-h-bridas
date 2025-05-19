@@ -151,21 +151,23 @@ curl -X POST http://localhost:4000/api/frases \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TU_TOKEN" \
   -d '{
-    "nombre": "Birdperson",
-    "edad": 40,
-    "tipo": "secundario"
+    "frase": "You’re not my real bird dad.",
+    "imageUrl": "https://rickandmortyapi.com/api/character/avatar/47.jpeg",
+    "autor": "ID_DEL_PERSONAJE",
+    "season": [2]
 }'
 
 PUT (JWT):
-curl -X PUT http://localhost:4000/api/frases/:id \
+curl -X PUT http://localhost:4000/api/frases/ID_FRASE \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TU_TOKEN" \
   -d '{
-    "edad": 41
+    "frase": "Nueva frase corregida de Birdperson"
 }'
 
+
 DELETE (JWT):
-curl -X DELETE http://localhost:4000/api/frases/:id \
+curl -X DELETE http://localhost:4000/api/frases/ID_FRASE \
   -H "Authorization: Bearer TU_TOKEN"
 </pre>
 
