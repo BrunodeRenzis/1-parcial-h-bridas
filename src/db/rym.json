@@ -1,0 +1,26 @@
+{
+    "type": "Compass Connections",
+    "version": {
+      "$numberInt": "1"
+    },
+    "connections": [
+      {
+        "id": "21e9597f-80fb-4992-989a-23c6a0098303",
+        "lastUsed": {
+          "$date": {
+            "$numberLong": "1747660583863"
+          }
+        },
+        "favorite": {
+          "name": "mongo_hibridas"
+        },
+        "savedConnectionType": "recent",
+        "connectionOptions": {
+          "connectionString": "mongodb://localhost:27017/",
+          "oidc": {
+            "serializedState": "eyJvaWRjUGx1Z2luU3RhdGVWZXJzaW9uIjowLCJzdGF0ZSI6W119"
+          }
+        }
+      }
+    ]
+  }
