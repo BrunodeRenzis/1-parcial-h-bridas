@@ -29,8 +29,14 @@ export const getFraseById = async (id) => {
 };
 
 export const createFrase = async (data) => {
-  const nueva = new Frase(data);
-  return await nueva.save();
+  const nuevaFrase = new Frase(data);
+  const savedFrase = await nuevaFrase.save();
+  const personaje = await Personaje.findById(data.autor);
+  if (personaje) {
+    personaje.frases.push(savedFrase._id);
+    await personaje.save();
+  }
+  return savedFrase;
 };
 
 export const updateFrase = async (id, data) => {

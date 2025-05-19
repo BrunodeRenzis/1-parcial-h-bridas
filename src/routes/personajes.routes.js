@@ -23,7 +23,6 @@ router.post(
   authenticateJWT,
   validateWith(personajeSchema),
   [
-    body('id').isUUID(),
     body('nombre').notEmpty(),
     body('edad').isNumeric(),
     body('tipo').isIn(['principal', 'secundario']),
