@@ -13,3 +13,15 @@ export const fraseSchema = Joi.object({
   autor: Joi.string().hex().length(24).required(),
   season: Joi.array().items(Joi.number().integer().min(1)).min(1).required()
 });
+
+export const userRegisterSchema = Joi.object({
+  nombre: Joi.string().min(2).max(100).required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).max(128).required(),
+  role: Joi.string().valid('superadmin', 'standard').optional()
+});
+
+export const userLoginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).max(128).required()
+});

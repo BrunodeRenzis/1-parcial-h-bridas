@@ -9,7 +9,7 @@ import {
 
 import { body } from 'express-validator';
 import { validateFields } from '../middlewares/validate.middleware.js';
-import { authenticateJWT } from '../middlewares/auth.middleware.js';
+import { authenticateJWT, authorizeRole } from '../middlewares/auth.middleware.js';
 import { validateWith } from '../middlewares/joi.middleware.js';
 import { personajeSchema } from '../validations/schemas.js';
 
@@ -21,6 +21,7 @@ router.get('/:id', getPersonajeById);
 router.post(
   '/',
   authenticateJWT,
+  authorizeRole(['superadmin']),
   validateWith(personajeSchema),
   [
     body('nombre').notEmpty(),
@@ -34,6 +35,7 @@ router.post(
 router.put(
   '/:id',
   authenticateJWT,
+  authorizeRole(['superadmin']),
   [
     body('nombre').optional().notEmpty(),
     body('edad').optional().isNumeric(),
@@ -43,6 +45,6 @@ router.put(
   putPersonaje
 );
 
-router.delete('/:id', authenticateJWT, deletePersonaje);
+router.delete('/:id', authenticateJWT, authorizeRole(['superadmin']), deletePersonaje);
 
 export default router;

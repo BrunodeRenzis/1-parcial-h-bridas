@@ -14,9 +14,9 @@ export const createPersonaje = async (data) => {
 };
 
 export const updatePersonaje = async (id, data) => {
-  return await Personaje.findOneAndUpdate( id , data, { new: true });
+  return await Personaje.findOneAndUpdate({ _id: id }, data, { new: true });
 };
 
 export const deletePersonaje = async (id) => {
-  return await Personaje.findOneAndDelete( id );
+  return await Personaje.findOneAndDelete({ _id: id });
 };

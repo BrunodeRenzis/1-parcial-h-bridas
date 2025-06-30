@@ -12,6 +12,7 @@ import { validateFields } from '../middlewares/validate.middleware.js';
 import { authenticateJWT } from '../middlewares/auth.middleware.js';
 import { validateWith } from '../middlewares/joi.middleware.js';
 import { fraseSchema } from '../validations/schemas.js';
+import { authorizeRole } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.get('/:id', getFrase);
 router.post(
   '/',
   authenticateJWT,
+  authorizeRole(['superadmin']),
   validateWith(fraseSchema),
   [
     body('imageUrl').isURL(),
@@ -32,7 +34,7 @@ router.post(
   postFrase
 );
 
-router.put('/:id', authenticateJWT, putFrase);
-router.delete('/:id', authenticateJWT, deleteFrase);
+router.put('/:id', authenticateJWT, authorizeRole(['superadmin']), putFrase);
+router.delete('/:id', authenticateJWT, authorizeRole(['superadmin']), deleteFrase);
 
 export default router;

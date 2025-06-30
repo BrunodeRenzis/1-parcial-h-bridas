@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import personajesRoutes from './routes/personajes.routes.js';
 import cors from 'cors';
+import userRoutes from './routes/user.routes.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
@@ -26,5 +27,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/frases', frasesRoutes);
 app.use('/api/personajes', personajesRoutes);
+app.use('/api/users', userRoutes);
 
 export default app;
