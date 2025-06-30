@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const fraseSchema = new mongoose.Schema({
-  imageUrl: { type: String, required: true },
   frase: { type: String, required: true },
   autor: {
     type: mongoose.Schema.Types.ObjectId,

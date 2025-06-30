@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4000/api/frases';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/frases`;
 
 export async function getFrases(token?: string) {
   const res = await fetch(API_URL, {

@@ -1,69 +1,52 @@
-# React + TypeScript + Vite
+# Rick & Morty Frontend (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este frontend consume la API de Rick & Morty y permite:
 
-Currently, two official plugins are available:
+- Registro y login de usuarios (superadmin y standard)
+- Persistencia de sesión con JWT (localStorage y cookies)
+- UI protegida según el rol del usuario
+- CRUD de personajes y frases (solo superadmin puede crear/editar/borrar)
+- Formularios validados y UI moderna con SCSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 👤 Gestión de Usuarios y Autenticación
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Registro: Formulario para crear usuario con nombre, email, contraseña y rol
+- Login: Formulario de acceso, guarda el token y usuario en localStorage/cookie
+- Restauración de sesión automática al refrescar (consulta /api/users/me con el token)
+- Navbar muestra el nombre y rol, y permite logout
+- Rutas protegidas: solo usuarios autenticados pueden acceder a la app
+- El superadmin ve opciones extra (registrar usuario, CRUD completo)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Estructura y tecnologías
+- React + TypeScript + Vite
+- Context API para autenticación
+- React Router para rutas protegidas
+- SCSS para estilos modernos y responsivos
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📦 Instalación y uso
+
+1. Instala dependencias:
+```bash
+npm install
+```
+2. Crea un archivo `.env` con la URL de la API:
+```env
+VITE_API_URL=http://localhost:4000
+```
+3. Inicia el frontend:
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📝 Notas
+- El frontend requiere que el backend esté corriendo y accesible en la URL configurada.
+- No es necesario instalar dependencias extra para el manejo de variables de entorno, Vite las soporta nativamente.
+- El diseño es responsivo y accesible, con feedback visual para errores y éxito en formularios.

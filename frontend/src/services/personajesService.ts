@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4000/api/personajes';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/personajes`;
 
 export async function getPersonajes(token?: string) {
   const res = await fetch(API_URL, {

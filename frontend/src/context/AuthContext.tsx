@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export type User = {
   _id: string;
@@ -52,13 +52,27 @@ export const AuthProvider = ({ children }: { children: any }) => {
     deleteCookie('token');
   };
 
-  // Cargar usuario/token de localStorage o cookie al iniciar
-  React.useEffect(() => {
+  useEffect(() => {
     const storedToken = localStorage.getItem('token') || getCookie('token');
     const storedUser = localStorage.getItem('user');
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
+    } else if (storedToken && !storedUser) {
+      fetch(`${import.meta.env.VITE_API_URL}/api/users/me`, {
+        headers: { Authorization: `Bearer ${storedToken}` }
+      })
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+          if (data) {
+            setUser(data);
+            setToken(storedToken);
+            localStorage.setItem('user', JSON.stringify(data));
+          } else {
+            logout();
+          }
+        })
+        .catch(() => logout());
     }
   }, []);
 

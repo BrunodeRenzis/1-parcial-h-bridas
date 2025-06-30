@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import RegisterPage from './pages/RegisterPage';
-import FrasesPage from './pages/FrasesPage';
-import PersonajesPage from './pages/PersonajesPage';
-import LoginPage from './pages/LoginPage';
+import FrasesPage from './pages/frasesPage/FrasesPage';
+import PersonajesPage from './pages/PersonagesPage/PersonajesPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {

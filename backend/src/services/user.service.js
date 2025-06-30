@@ -13,4 +13,8 @@ export const findUserByEmail = async (email) => {
 
 export const validatePassword = async (plainPassword, hashedPassword) => {
   return await bcrypt.compare(plainPassword, hashedPassword);
+};
+
+export const findUserById = async (id) => {
+  return await User.findById(id);
 }; 

@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4000/api/users';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/users`;
 
 export async function login(email: string, password: string) {
   const res = await fetch(`${API_URL}/login`, {
@@ -7,7 +7,7 @@ export async function login(email: string, password: string) {
     body: JSON.stringify({ email, password })
   });
   if (!res.ok) throw new Error('Login fallido');
-  return await res.json(); // { token, user }
+  return await res.json();
 }
 
 export async function register(nombre: string, email: string, password: string, role?: string) {
@@ -17,5 +17,5 @@ export async function register(nombre: string, email: string, password: string, 
     body: JSON.stringify({ nombre, email, password, role })
   });
   if (!res.ok) throw new Error('Registro fallido');
-  return await res.json(); // { _id, nombre, email, role }
+  return await res.json();
 } 

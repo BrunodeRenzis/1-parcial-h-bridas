@@ -3,10 +3,56 @@
 API RESTful desarrollada con Node.js, Express y MongoDB para administrar frases de personajes de Rick y Morty. Incluye:
 
 - Autenticación con JWT
+- Gestión de usuarios con roles (superadmin y standard)
 - Validaciones con `express-validator`
 - Relación entre frases y personajes (referencias)
 - Filtros avanzados, búsqueda, paginado y ordenamiento
 - Código modular con separación de responsabilidades
+
+---
+
+## 👤 Gestión de Usuarios y Autenticación
+
+- Registro de usuarios con rol (`superadmin` o `standard`)
+- Login con JWT
+- Endpoint para obtener el usuario autenticado a partir del token
+- Solo el superadmin puede crear, editar o borrar personajes y frases; el usuario standard solo puede leer
+
+### Endpoints de usuarios
+
+| Método | Endpoint              | Descripción                                 |
+|--------|-----------------------|---------------------------------------------|
+| POST   | /api/users/register   | Registro de usuario                         |
+| POST   | /api/users/login      | Login y obtención de JWT                    |
+| GET    | /api/users/me         | Obtener usuario autenticado (requiere JWT)  |
+
+#### Ejemplo de registro
+```bash
+curl -X POST http://localhost:4000/api/users/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "Bruno",
+    "email": "bruno@mail.com",
+    "password": "123456",
+    "role": "superadmin"
+}'
+```
+
+#### Ejemplo de login
+```bash
+curl -X POST http://localhost:4000/api/users/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "bruno@mail.com",
+    "password": "123456"
+}'
+```
+
+#### Obtener usuario autenticado
+```bash
+curl http://localhost:4000/api/users/me \
+  -H "Authorization: Bearer TU_TOKEN"
+```
 
 ---
 

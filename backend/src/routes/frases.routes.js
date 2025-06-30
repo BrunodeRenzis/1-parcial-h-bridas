@@ -25,7 +25,6 @@ router.post(
   authorizeRole(['superadmin']),
   validateWith(fraseSchema),
   [
-    body('imageUrl').isURL(),
     body('frase').notEmpty(),
     body('autor').notEmpty(),
     body('season').isArray(),

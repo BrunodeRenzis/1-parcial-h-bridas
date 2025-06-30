@@ -19,7 +19,7 @@ const personajesData = [{
                 season: [1],
             },
             {
-                frase: 'I’m sorry, but your opinion means very little to me.',
+                frase: "I'm sorry, but your opinion means very little to me.",
                 season: [2],
             },
         ],
@@ -30,7 +30,7 @@ const personajesData = [{
         tipo: 'principal',
         imageUrl: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
         frases: [{
-            frase: 'Nobody exists on purpose. Nobody belongs anywhere. We’re all going to die. Come watch TV.',
+            frase: "Nobody exists on purpose. Nobody belongs anywhere. We're all going to die. Come watch TV.",
             season: [1],
         }, ],
     },
@@ -40,7 +40,7 @@ const personajesData = [{
         tipo: 'secundario',
         imageUrl: 'https://rickandmortyapi.com/api/character/avatar/5.jpeg',
         frases: [{
-            frase: 'I’m the man of this house!',
+            frase: "I'm the man of this house!",
             season: [1],
         }, ],
     },
@@ -50,7 +50,7 @@ const personajesData = [{
         tipo: 'secundario',
         imageUrl: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg',
         frases: [{
-                frase: 'I’m a horse surgeon, not a doctor!',
+                frase: "I'm a horse surgeon, not a doctor!",
                 season: [1],
             },
             {
@@ -65,7 +65,7 @@ const personajesData = [{
         tipo: 'secundario',
         imageUrl: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg',
         frases: [{
-            frase: 'So, I’m like, the only normal person in this family.',
+            frase: "So, I'm like, the only normal person in this family.",
             season: [1],
         }, ],
     },
@@ -126,6 +126,7 @@ async function seedDatabase() {
                 nombre,
                 edad,
                 tipo,
+                imageUrl,
                 frases: []
             });
 
@@ -133,7 +134,6 @@ async function seedDatabase() {
 
             for (const fraseData of frases) {
                 const nuevaFrase = new Frase({
-                    imageUrl,
                     frase: fraseData.frase,
                     autor: personaje._id,
                     season: fraseData.season

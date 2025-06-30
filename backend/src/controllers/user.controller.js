@@ -25,4 +25,14 @@ export const login = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+export const me = async (req, res, next) => {
+  try {
+    const user = await userService.findUserById(req.user.id);
+    if (!user) return res.status(404).json({ msg: 'Usuario no encontrado' });
+    res.json({ _id: user._id, nombre: user.nombre, email: user.email, role: user.role });
+  } catch (err) {
+    next(err);
+  }
 }; 
