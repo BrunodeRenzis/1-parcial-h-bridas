@@ -7,7 +7,8 @@ interface Props {
 }
 
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
-  const { user } = useAuth();
+  const { user,loading } = useAuth();
+  if (loading) return <p>Cargando sesión...</p>;
   if (!user) return <Navigate to="/login" replace />;
   return <>{children}</>;
 };
