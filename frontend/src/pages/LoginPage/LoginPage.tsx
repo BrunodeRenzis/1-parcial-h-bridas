@@ -44,6 +44,9 @@ const LoginPage: React.FC = () => {
           />
           <button type="submit">Ingresar</button>
         </form>
+        <div className="register-button" onClick={()=>navigate('/register')}>
+          <p><span>No tienes cuenta? Registrate</span></p>
+        </div>
         {error && <p className="login-error">{error}</p>}
       </div>
     </div>

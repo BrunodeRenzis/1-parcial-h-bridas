@@ -40,6 +40,14 @@
   color: #222;
 }
 
+.register-button{
+  color: #60abf7;
+  text-decoration: underline;
+  :hover{
+    cursor: pointer;
+  }
+}
+
 .login-form button {
   background: #1976d2;
   color: #fff;
