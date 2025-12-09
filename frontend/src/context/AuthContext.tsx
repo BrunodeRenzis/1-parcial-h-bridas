@@ -41,9 +41,9 @@ export const AuthProvider = ({ children }: { children: any }) => {
   const login = (user: User, token: string) => {
     setUser(user);
     setToken(token);
+    setCookie('token', token);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    setCookie('token', token);
   };
 
   const logout = () => {
@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }: { children: any }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem('token') || getCookie('token');
     const storedUser = localStorage.getItem('user');
+
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
@@ -93,4 +94,4 @@ export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) throw new Error('useAuth debe usarse dentro de AuthProvider');
   return context;
-}; 
+};
