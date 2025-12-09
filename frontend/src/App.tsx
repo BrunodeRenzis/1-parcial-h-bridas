@@ -1,15 +1,14 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import RegisterPage from './pages/RegisterPage';
-import FrasesPage from './pages/frasesPage/FrasesPage';
-import PersonajesPage from './pages/PersonagesPage/PersonajesPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import ProtectedRoute from './components/ProtectedRoute';
-import Navbar from './components/Navbar';
-import AdminRoute from './components/AdminRoute';
-import AdminLayout from './layouts/AdminLayout';
-import FrasesAdminPage from './pages/admin/FrasesAdminPage';
-import PersonajesAdminPage from './pages/admin/PersonajesAdminPage';
-import UsersAdminPage from './pages/admin/UsersAdminPage';
+import { Routes, Route, Navigate } from "react-router-dom";
+import RegisterPage from "./pages/RegisterPage";
+import FrasesPage from "./pages/frasesPage/FrasesPage";
+import PersonajesPage from "./pages/PersonagesPage/PersonajesPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import Navbar from "./components/Navbar";
+import AdminRoute from "./components/AdminRoute";
+import AdminLayout from "./layouts/AdminLayout";
+import FrasesAdminPage from "./pages/admin/FrasesAdminPage";
+import PersonajesAdminPage from "./pages/admin/PersonajesAdminPage";
+import UsersAdminPage from "./pages/admin/UsersAdminPage";
 
 function App() {
   return (
@@ -39,4 +38,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

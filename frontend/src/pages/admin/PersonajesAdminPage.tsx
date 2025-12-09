@@ -164,7 +164,12 @@ const PersonajesAdminPage: React.FC = () => {
                   <span>Edad: {p.edad}</span>
                   <span>Tipo: {p.tipo}</span>
                 </div>
-                <img src={p.imageUrl || 'https://via.placeholder.com/100'} alt={p.nombre} className="admin-card__img" />
+                <img
+                  src={p.imageUrl || 'https://via.placeholder.com/100'}
+                  alt={p.nombre}
+                  className="admin-card__img"
+                  onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/100'; }}
+                />
                 <div className="admin-actions">
                   <button onClick={() => { setEditId(p._id); setEditNombre(p.nombre); setEditEdad(String(p.edad)); setEditTipo(p.tipo); setEditImageUrl(p.imageUrl || ''); }}>Editar</button>
                   <button onClick={() => handleBorrar(p._id)}>Borrar</button>

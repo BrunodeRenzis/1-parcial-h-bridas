@@ -128,7 +128,12 @@ const FrasesPage: React.FC = () => {
                 </form>
               ) : (
                 <>
-                  <img src={typeof f?.autor === 'object' && f?.autor?.imageUrl ? f?.autor?.imageUrl : 'https://via.placeholder.com/100'} alt={typeof f?.autor === 'object' ? f?.autor?.nombre : 'Autor'} className="frase-img" />
+                  <img
+                    src={typeof f?.autor === 'object' && f?.autor?.imageUrl ? f?.autor?.imageUrl : 'https://via.placeholder.com/100'}
+                    alt={typeof f?.autor === 'object' ? f?.autor?.nombre : 'Autor'}
+                    className="frase-img"
+                    onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/100'; }}
+                  />
                   <div className="frase-info">
                     <strong>{f.frase}</strong>
                     <div>Autor: {typeof f?.autor === 'object' ? f?.autor?.nombre : 'Sin autor'}</div>
