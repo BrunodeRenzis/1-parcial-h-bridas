@@ -5,8 +5,8 @@
   background: #181818;
   padding: 16px 32px;
   color: #fff;
-  font-family: 'Inter', Arial, sans-serif;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  font-family: "Inter", Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .navbar__left {
@@ -37,6 +37,7 @@
 .navbar__right {
   display: flex;
   align-items: center;
+  gap: 24px;
 }
 
 .navbar__logout {
@@ -56,4 +57,4 @@
     color: #fff;
     text-decoration: none;
   }
-} 
+}

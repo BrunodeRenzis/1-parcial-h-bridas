@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar';
 import { useAuth } from '../../context/AuthContext';
 import { getPersonajes, createPersonaje, updatePersonaje, deletePersonaje } from '../../services/personajesService';
 import './PersonajesPage.scss';
@@ -85,8 +84,6 @@ const PersonajesPage: React.FC = () => {
   };
 
   return (
-    <>
-      <Navbar />
       <div className="personajes-container">
         <h2>Personajes</h2>
         {loading && <p>Cargando...</p>}
@@ -174,7 +171,6 @@ const PersonajesPage: React.FC = () => {
           ))}
         </div>
       </div>
-    </>
   );
 };
 

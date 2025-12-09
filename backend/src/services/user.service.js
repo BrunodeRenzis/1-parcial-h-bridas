@@ -18,3 +18,22 @@ export const validatePassword = async (plainPassword, hashedPassword) => {
 export const findUserById = async (id) => {
   return await User.findById(id);
 }; 
+
+export const getAllUsers = async () => {
+  return await User.find({}, 'nombre email role');
+};
+
+export const updateUser = async (id, { nombre, email, password, role }) => {
+  const updateData = {};
+  if (nombre !== undefined) updateData.nombre = nombre;
+  if (email !== undefined) updateData.email = email;
+  if (role !== undefined) updateData.role = role;
+  if (password !== undefined) {
+    updateData.password = await bcrypt.hash(password, 10);
+  }
+  return await User.findByIdAndUpdate(id, updateData, { new: true, projection: 'nombre email role' });
+};
+
+export const deleteUser = async (id) => {
+  return await User.findByIdAndDelete(id);
+};

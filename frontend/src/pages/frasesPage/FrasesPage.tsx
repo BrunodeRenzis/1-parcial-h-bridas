@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar';
 import { useAuth } from '../../context/AuthContext';
 import { getFrases, createFrase, updateFrase, deleteFrase } from '../../services/frasesService';
 import { getPersonajes } from '../../services/personajesService';
@@ -84,8 +83,6 @@ const FrasesPage: React.FC = () => {
   };
 
   return (
-    <>
-      <Navbar />
       <div className="frases-container">
         <h2>Frases</h2>
         {loading && <p>Cargando...</p>}
@@ -148,7 +145,6 @@ const FrasesPage: React.FC = () => {
           ))}
         </div>
       </div>
-    </>
   );
 };
 

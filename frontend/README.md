@@ -22,6 +22,7 @@ Este frontend consume la API de Rick & Morty y permite:
 ---
 
 ## 🛠️ Estructura y tecnologías
+
 - React + TypeScript + Vite
 - Context API para autenticación
 - React Router para rutas protegidas
@@ -31,15 +32,21 @@ Este frontend consume la API de Rick & Morty y permite:
 
 ## 📦 Instalación y uso
 
-1. Instala dependencias:
+1. Clona el repositorio:
+
+````bash
+git clone https://github.com/BrunodeRenzis/1-parcial-h-bridas.git
+cd frontend
+
+2. Instala dependencias:
 ```bash
 npm install
 ```
-2. Crea un archivo `.env` con la URL de la API:
+3. Crea un archivo `.env` con la URL de la API:
 ```env
 VITE_API_URL=http://localhost:4000
 ```
-3. Inicia el frontend:
+4. Inicia el frontend:
 ```bash
 npm run dev
 ```
@@ -50,3 +57,4 @@ npm run dev
 - El frontend requiere que el backend esté corriendo y accesible en la URL configurada.
 - No es necesario instalar dependencias extra para el manejo de variables de entorno, Vite las soporta nativamente.
 - El diseño es responsivo y accesible, con feedback visual para errores y éxito en formularios.
+````

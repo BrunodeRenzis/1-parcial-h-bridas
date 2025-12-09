@@ -6,11 +6,13 @@ interface Props {
   children: React.ReactNode;
 }
 
-const ProtectedRoute: React.FC<Props> = ({ children }) => {
+const AdminRoute: React.FC<Props> = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return null;
   if (!user) return <Navigate to="/login" replace />;
+  if (user.role !== 'superadmin' && user.role !== 'admin') return <Navigate to="/frases" replace />;
   return <>{children}</>;
 };
 
-export default ProtectedRoute; 
+export default AdminRoute;
+
