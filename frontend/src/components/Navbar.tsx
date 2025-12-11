@@ -10,4 +10,4 @@ const Navbar: React.FC = () => {
   return <NavbarLogged user={user} />;
 };
 
-export default Navbar;
+export default Navbar; 
