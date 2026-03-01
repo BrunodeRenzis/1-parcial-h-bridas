@@ -18,10 +18,17 @@ export const userRegisterSchema = Joi.object({
   nombre: Joi.string().min(2).max(100).required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).max(128).required(),
-  role: Joi.string().valid('superadmin', 'standard').optional()
+  role: Joi.string().valid('superadmin', 'admin', 'standard').optional()
 });
 
 export const userLoginSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).max(128).required()
 });
+
+export const userUpdateSchema = Joi.object({
+  nombre: Joi.string().min(2).max(100).optional(),
+  email: Joi.string().email().optional(),
+  password: Joi.string().min(6).max(128).optional(),
+  role: Joi.string().valid('superadmin', 'admin', 'standard').optional()
+}).min(1);

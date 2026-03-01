@@ -20,13 +20,14 @@ API RESTful desarrollada con Node.js, Express y MongoDB para administrar frases 
 
 ### Endpoints de usuarios
 
-| Método | Endpoint              | Descripción                                 |
-|--------|-----------------------|---------------------------------------------|
-| POST   | /api/users/register   | Registro de usuario                         |
-| POST   | /api/users/login      | Login y obtención de JWT                    |
-| GET    | /api/users/me         | Obtener usuario autenticado (requiere JWT)  |
+| Método | Endpoint            | Descripción                                |
+| ------ | ------------------- | ------------------------------------------ |
+| POST   | /api/users/register | Registro de usuario                        |
+| POST   | /api/users/login    | Login y obtención de JWT                   |
+| GET    | /api/users/me       | Obtener usuario autenticado (requiere JWT) |
 
 #### Ejemplo de registro
+
 ```bash
 curl -X POST http://localhost:4000/api/users/register \
   -H "Content-Type: application/json" \
@@ -39,6 +40,7 @@ curl -X POST http://localhost:4000/api/users/register \
 ```
 
 #### Ejemplo de login
+
 ```bash
 curl -X POST http://localhost:4000/api/users/login \
   -H "Content-Type: application/json" \
@@ -49,6 +51,7 @@ curl -X POST http://localhost:4000/api/users/login \
 ```
 
 #### Obtener usuario autenticado
+
 ```bash
 curl http://localhost:4000/api/users/me \
   -H "Authorization: Bearer TU_TOKEN"
@@ -71,9 +74,9 @@ curl http://localhost:4000/api/users/me \
 
 1. Clona el repositorio:
 
-```bash
-git clone https://github.com/tuusuario/rickmorty-api.git
-cd rickmorty-api
+````bash
+git clone https://github.com/BrunodeRenzis/1-parcial-h-bridas.git
+cd backend
 
 
 2. Instala dependencias:
@@ -198,3 +201,4 @@ Docente: [MARCOS GALBÁN, Camila Belén]
 
 Comisión: [A-1331]
 
+````

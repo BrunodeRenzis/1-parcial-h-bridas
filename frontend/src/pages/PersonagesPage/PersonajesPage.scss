@@ -1,12 +1,13 @@
 .personajes-container {
-  max-width: 100vw;
-  padding: 0.5rem 0.2rem;
+  max-width: 1024px;
+  padding: 1.5rem 1rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .personaje-form, .personaje-form-inline {
@@ -32,11 +33,9 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 1rem;
-  min-width: 220px;
-  max-width: 250px;
+  min-width: 0;
+  width: min(320px, 100% - 32px);
   min-height: 340px;
-  width: 100%;
-  max-width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,10 +115,8 @@ input, select {
     align-items: center;
   }
   .personaje-card {
-    min-width: 0;
-    max-width: 98vw;
-    width: 98vw;
-    padding: 1rem 0.5rem;
+    width: min(420px, 100% - 24px);
+    padding: 1rem;
   }
   .personaje-form, .personaje-form-inline {
     flex-direction: column;

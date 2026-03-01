@@ -1,5 +1,5 @@
 .frases-container {
-  max-width: 900px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 2rem 1rem;
   display: flex;
@@ -7,6 +7,7 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .frase-form, .frase-form-inline {
@@ -32,11 +33,9 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 1rem;
-  min-width: 220px;
-  max-width: 350px;
+  min-width: 0;
+  width: min(360px, 100% - 32px);
   min-height: 340px;
-  width: 100%;
-  max-width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,10 +115,8 @@ input, select {
     align-items: center;
   }
   .frase-card {
-    min-width: 0;
-    max-width: 98vw;
-    width: 98vw;
-    padding: 1rem 0.5rem;
+    width: min(440px, 100% - 24px);
+    padding: 1rem;
   }
   .frase-form, .frase-form-inline {
     flex-direction: column;

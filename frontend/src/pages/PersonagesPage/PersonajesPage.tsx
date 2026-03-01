@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar';
 import { useAuth } from '../../context/AuthContext';
 import { getPersonajes, createPersonaje, updatePersonaje, deletePersonaje } from '../../services/personajesService';
 import './PersonajesPage.scss';
@@ -85,8 +84,6 @@ const PersonajesPage: React.FC = () => {
   };
 
   return (
-    <>
-      <Navbar />
       <div className="personajes-container">
         <h2>Personajes</h2>
         {loading && <p>Cargando...</p>}
@@ -156,7 +153,12 @@ const PersonajesPage: React.FC = () => {
                 </form>
               ) : (
                 <>
-                  <img src={p.imageUrl || 'https://via.placeholder.com/100'} alt={p.nombre} className="personaje-img" />
+                <img
+                  src={p.imageUrl || 'https://via.placeholder.com/100'}
+                  alt={p.nombre}
+                  className="personaje-img"
+                  onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/100'; }}
+                />
                   <div className="personaje-info">
                     <strong>{p.nombre}</strong>
                     <div>Edad: {p.edad}</div>
@@ -174,7 +176,6 @@ const PersonajesPage: React.FC = () => {
           ))}
         </div>
       </div>
-    </>
   );
 };
 

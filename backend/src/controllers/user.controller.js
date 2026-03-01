@@ -36,3 +36,32 @@ export const me = async (req, res, next) => {
     next(err);
   }
 }; 
+
+export const listUsers = async (_req, res, next) => {
+  try {
+    const users = await userService.getAllUsers();
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const updateUser = async (req, res, next) => {
+  try {
+    const updated = await userService.updateUser(req.params.id, req.body);
+    if (!updated) return res.status(404).json({ msg: 'Usuario no encontrado' });
+    res.json(updated);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  try {
+    const deleted = await userService.deleteUser(req.params.id);
+    if (!deleted) return res.status(404).json({ msg: 'Usuario no encontrado' });
+    res.json({ msg: 'Usuario eliminado' });
+  } catch (err) {
+    next(err);
+  }
+};

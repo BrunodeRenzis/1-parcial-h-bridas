@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar';
 import { useAuth } from '../../context/AuthContext';
 import { getFrases, createFrase, updateFrase, deleteFrase } from '../../services/frasesService';
 import { getPersonajes } from '../../services/personajesService';
@@ -84,8 +83,6 @@ const FrasesPage: React.FC = () => {
   };
 
   return (
-    <>
-      <Navbar />
       <div className="frases-container">
         <h2>Frases</h2>
         {loading && <p>Cargando...</p>}
@@ -131,7 +128,12 @@ const FrasesPage: React.FC = () => {
                 </form>
               ) : (
                 <>
-                  <img src={typeof f?.autor === 'object' && f?.autor?.imageUrl ? f?.autor?.imageUrl : 'https://via.placeholder.com/100'} alt={typeof f?.autor === 'object' ? f?.autor?.nombre : 'Autor'} className="frase-img" />
+                  <img
+                    src={typeof f?.autor === 'object' && f?.autor?.imageUrl ? f?.autor?.imageUrl : 'https://via.placeholder.com/100'}
+                    alt={typeof f?.autor === 'object' ? f?.autor?.nombre : 'Autor'}
+                    className="frase-img"
+                    onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/100'; }}
+                  />
                   <div className="frase-info">
                     <strong>{f.frase}</strong>
                     <div>Autor: {typeof f?.autor === 'object' ? f?.autor?.nombre : 'Sin autor'}</div>
@@ -148,7 +150,6 @@ const FrasesPage: React.FC = () => {
           ))}
         </div>
       </div>
-    </>
   );
 };
 

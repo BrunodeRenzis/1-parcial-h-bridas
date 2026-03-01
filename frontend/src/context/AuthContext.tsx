@@ -4,7 +4,7 @@ export type User = {
   _id: string;
   nombre: string;
   email: string;
-  role: 'superadmin' | 'standard';
+  role: 'superadmin' | 'admin' | 'standard';
 };
 
 interface AuthContextType {
